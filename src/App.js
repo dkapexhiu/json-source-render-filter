@@ -1091,6 +1091,7 @@ function App() {
 
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState(dataList);
+  const excludeColumns = [""];
 
   // handle change event of search input
   const handleChange = value => {
