@@ -13,8 +13,19 @@ function App() {
     setData(response.data);
   };
 
+  const resetSearch = () => {
+    setSearchText("");
+  };
+
+  React.useEffect(() => {
+    if (searchText === "") {
+      fetchData();
+    }
+  }, [searchText]);
+
   React.useEffect(() => {
     fetchData();
+    resetSearch();
   }, []);
 
   // handle change event of search input
@@ -46,6 +57,7 @@ function App() {
     <div className="App">
       Search:{" "}
       <input
+        id="inputField"
         style={{ marginLeft: 5 }}
         type="text"
         placeholder="Type to search..."
