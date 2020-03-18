@@ -13,19 +13,22 @@ function App() {
     setData(response.data);
   };
 
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
   // handle change event of search input
   const handleChange = value => {
     setSearchText(value);
     filterData(value);
-    fetchData();
   };
 
   // filter records by search text
   const filterData = value => {
     const lowercasedValue = value.toLowerCase().trim();
-    if (lowercasedValue === "") setData(dataList);
+    if (lowercasedValue === "") setData(data);
     else {
-      const filteredData = dataList.filter(item => {
+      const filteredData = data.filter(item => {
         return Object.keys(item).some(key =>
           excludeColumns.includes(key)
             ? false
