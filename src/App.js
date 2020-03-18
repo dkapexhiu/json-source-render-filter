@@ -13,10 +13,6 @@ function App() {
     setData(response.data);
   };
 
-  const resetSearch = () => {
-    setSearchText("");
-  };
-
   React.useEffect(() => {
     if (searchText === "") {
       fetchData();
@@ -25,8 +21,13 @@ function App() {
 
   React.useEffect(() => {
     fetchData();
-    resetSearch();
   }, []);
+
+  const onKeyDown = e => {
+    if (e.keyCode === 8) {
+      setSearchText("");
+    }
+  };
 
   // handle change event of search input
   const handleChange = value => {
@@ -63,6 +64,7 @@ function App() {
         placeholder="Type to search..."
         value={searchText}
         onChange={e => handleChange(e.target.value)}
+        onKeyDown={onKeyDown}
       />
       <div className="box-container">
         {data &&
